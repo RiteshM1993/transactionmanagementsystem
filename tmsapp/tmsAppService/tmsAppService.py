@@ -1,5 +1,7 @@
 from tmsapp.models import transaction
+from django.conf import settings
 from datetime import datetime
+import uuid
 from django.utils import timezone
 import pandas as pd
 from django.forms import model_to_dict
@@ -60,7 +62,9 @@ class transactions:
 
             txnobjs = [model_to_dict(txnobj) for txnobj in transaction.objects.filter(created_date__range=(startDate, endDate))]
             df = pd.DataFrame(txnobjs)
-            df.to_csv('static/csv/data'+str(datetime.datetime.now())+'.csv',sep=',')
+            file_path = 'static/csv/' + str(uuid.uuid4())+'.csv'
+            df.to_csv(file_path, sep=',')
+            return file_path
 
         except Exception, err:
             failureobj = {

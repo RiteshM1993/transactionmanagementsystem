@@ -1,5 +1,5 @@
 angular.module('transactionsController',[])
-.controller('transactionController',['transactionService','$stateParams','$state',function(transactionService,$stateParams,$state){
+.controller('transactionController',['transactionService','$stateParams','$state','$window', function(transactionService,$stateParams,$state, $window){
 
     var transactionScope = this;
 
@@ -52,8 +52,7 @@ angular.module('transactionsController',[])
         var endDate = transactionScope.endDate.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
 
         var success = function(response){
-            console.log(response)
-            console.log('success')
+            $window.open(response.data.data, '_blank')
         }
 
         var failure = function(response){

@@ -1,3 +1,0 @@
-,amount,billing_address,created_date,name,reference_id,status,transaction_id,transaction_number,transaction_type
-0,1000,BLR,2018-09-20,test transaction 1,Txn100,1,2,ddc10036-d268-43f2-b489-1714b3140b07,1
-1,2000,BLR,2018-09-15,test transaction 2,txn1001,0,3,9dcbf31e-827f-43fe-887b-7c66241304d9,0
