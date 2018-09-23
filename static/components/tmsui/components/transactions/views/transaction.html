@@ -1,0 +1,93 @@
+
+<div class="register-box" style="margin:4% auto">
+  <div class="register-logo">
+    <b>TMS</b> APP
+  </div>
+
+  <div class="register-box-body bdr-all">
+    <p class="login-box-msg">Generate Transaction</p>
+
+    <form role="form" name="transactionsForm" ng-submit="submitForm(transactionsForm.$valid)" novalidate>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Name" ng-model="transactionScope.name" name="name" ng-required="true">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <p ng-show="transactionsForm.name.$invalid && !transactionsForm.name.$pristine" class="help-block">name is required.</p>
+
+      <div class="form-group has-feedback">
+        <input type="number" class="form-control" placeholder="Amount" name="amount" ng-model="transactionScope.amount" ng-required="true">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <p ng-show="transactionsForm.amount.$invalid && !transactionsForm.amount.$pristine" class="help-block">Amount is required.</p>
+
+      <!--<div class="form-group has-feedback">-->
+        <!--<input type="text" class="form-control" id="datepicker" placeholder="Date Of Birth" ng-model="transactionScope.dob" name="dob" ng-required="true">-->
+        <!--<span class="glyphicon glyphicon-calendar form-control-feedback"></span>-->
+      <!--</div>-->
+      <!--<p ng-show="transactionsForm.dob.$invalid && !transactionsForm.dob.$pristine" class="help-block">DOB is required.</p>-->
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Reference number" name="referenceid" ng-model="transactionScope.referenceid" ng-required="true">
+        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+      </div>
+      <p ng-show="transactionsForm.referenceid.$invalid && !transactionsForm.referenceid.$pristine" class="help-block">Reference is required.</p>
+
+      <div class="form-group has-feedback">
+        <select name="status" class="form-control" ng-model="transactionScope.status" ng-required="true">
+          <option value="">---Select Status---</option>
+          <option value="1">Completed</option>
+          <option value="0">Pending</option>
+        </select>
+        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+      </div>
+      <p ng-show="transactionsForm.status.$invalid && !transactionsForm.status.$pristine" class="help-block">Status is required.</p>
+
+      <div class="form-group has-feedback">
+        <select name="transactiontype" class="form-control" ng-model="transactionScope.transactiontype" ng-required="true">
+          <option value="">---Select transaction type---</option>
+          <option value="0">Paid</option>
+          <option value="1">Free</option>
+          <option value="2">Custom</option>
+        </select>
+        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+      </div>
+      <p ng-show="transactionsForm.transactiontype.$invalid && !transactionsForm.transactiontype.$pristine" class="help-block">Transaction type is required.</p>
+
+
+      <div class="form-group has-feedback">
+        <textarea name="address" ng-model="transactionScope.address" ng-required="true" placeholder="Address" cols="36" rows="5"></textarea>
+      </div>
+      <p ng-show="transactionsForm.address.$invalid && !transactionsForm.address.$pristine" class="help-block">Reference is required.</p>
+
+      <div class="row">
+           <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <!--<input type="checkbox"> I agree to the <a href="#">terms</a>-->
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" ng-click="transactionScope.saveTransaction()" ng-disabled="transactionsForm.$invalid" class="btn btn-primary btn-block btn-flat">Submit</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+
+    <div ng-show="transactionScope.successmsg" class="m-b-0 m-t-10 well well-sm alert alert-success text-center">Transaction Successful. <a ui-sref="listtransactions"> Click to view Transaction.</a> </div>
+    <div ng-show="transactionScope.errormsg"  class=" m-b-0 m-t-10  well well-sm alert alert-danger text-center">Transaction Unsuccessful. Please try again.</a> </div>
+
+  </div>
+  <!-- /.form-box -->
+</div>
+
+<script>
+  //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+</script>
+

@@ -1,0 +1,68 @@
+<div class="">
+<div class="col-sm-10 col-md-offset-1 scrollit p-t-b-25" ng-init="transactionScope.gettransactions()">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" id="datepicker" placeholder="Start Date" ng-model="transactionScope.startDate" name="startDate">
+                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" id="datepicker1" placeholder="End Date" ng-model="transactionScope.endDate" name="endDate">
+                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-warning pull-right" ng-click="transactionScope.createcsv()">Create CSV</button>
+        </div>
+    </div>
+    <table st-table="displayedCollection" style="" st-safe-src="transactionScope.transactions" class="table table-striped">
+        <thead>
+        <!--<tr>-->
+            <!--<th class="p-l-r-0"  colspan="8">-->
+                <!--<input st-search="" class="form-control searchBar-w pull-right" placeholder="Search Table..." type="text"/>-->
+            <!--</th>-->
+        <!--</tr>-->
+        <tr class="table-head-color">
+            <th>S.No</th>
+            <th>Transaction Name</th>
+            <th>Reference Id</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Transaction Type</th>
+            <th>Created Date</th>
+            <th>Billing Address</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-if="displayedCollection.length!=0" ng-repeat="row in displayedCollection">
+            <td>{{$index+1}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.reference}}</td>
+            <td>{{row.amount}}</td>
+            <td><span ng-if="row.status=='1'">Completed</span><span ng-if="row.status=='0'">Pending</span></td>
+            <td><span ng-if="row.type=='0'">Paid</span><span ng-if="row.type=='1'">Free</span><span ng-if="row.type=='2'">Custom</span></td>
+            <td>{{row.created_date}}</td>
+            <td>{{row.address}}</td>
+        </tr>
+        <tr ng-if="displayedCollection.length==0">
+            <td>No Transactions Yet!</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<script>
+  //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+    $('#datepicker1').datepicker({
+      autoclose: true
+    })
+
+</script>
